@@ -3,6 +3,17 @@ class TicTacToe
     @board = board || Array.new(9, " ")
   end
 
+  # Define your WIN_COMBINATIONS constant
+  WIN_COMBINATIONS = [
+    [0, 1, 2], # Top row
+    [3, 4, 5], # Middle row
+    [6, 7, 8], # Bottom row
+    [0, 3, 6], # Left column
+    [1, 4, 7], # Middle column
+    [2, 5, 8], # Right column
+    [0, 4, 8],
+    [2, 4, 6]
+  ]
   def current_player
     turn_count % 2 == 0 ? "X" : "O"
   end
@@ -10,7 +21,7 @@ class TicTacToe
   def turn_count
     @board.count{|token| token == "X" or token == "O"}
   end
-  
+
   def display_board
     puts " #{board[0]} | #{board[1]} | #{board[2]} "
     puts "-----------"
@@ -20,17 +31,8 @@ class TicTacToe
   end
 end
 
-# Define your WIN_COMBINATIONS constant
-WIN_COMBINATIONS = [
-  [0, 1, 2], # Top row
-  [3, 4, 5], # Middle row
-  [6, 7, 8], # Bottom row
-  [0, 3, 6], # Left column
-  [1, 4, 7], # Middle column
-  [2, 5, 8], # Right column
-  [0, 4, 8],
-  [2, 4, 6]
-]
+
+
 
 # take user_input and convert it to an Integer and subtracts 1, 1 argument string
 def input_to_index(input)
